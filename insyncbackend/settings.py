@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from django.core.management.utils import get_random_secret_key
-# from decouple import config
+from decouple import config
 
 # load_dotenv()
 
