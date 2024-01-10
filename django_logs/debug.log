@@ -1,0 +1,832 @@
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL); (params None)
+(0.000) CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL); args=None; alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+(0.000) CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); args=None; alias=default
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); (params ())
+(0.000) CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); args=(); alias=default
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('contenttypes', '0001_initial', '2024-01-10 20:13:11.522983') RETURNING "django_migrations"."id"; args=('contenttypes', '0001_initial', '2024-01-10 20:13:11.522983'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL, "name" varchar(100) NULL); (params None)
+(0.000) CREATE TABLE "new__django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL, "name" varchar(100) NULL); args=None; alias=default
+INSERT INTO "new__django_content_type" ("id", "app_label", "model", "name") SELECT "id", "app_label", "model", "name" FROM "django_content_type"; (params ())
+(0.000) INSERT INTO "new__django_content_type" ("id", "app_label", "model", "name") SELECT "id", "app_label", "model", "name" FROM "django_content_type"; args=(); alias=default
+DROP TABLE "django_content_type"; (params ())
+(0.000) DROP TABLE "django_content_type"; args=(); alias=default
+ALTER TABLE "new__django_content_type" RENAME TO "django_content_type"; (params ())
+(0.000) ALTER TABLE "new__django_content_type" RENAME TO "django_content_type"; args=(); alias=default
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); (params ())
+(0.000) CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); args=(); alias=default
+ALTER TABLE "django_content_type" DROP COLUMN "name"; (params ())
+(0.000) ALTER TABLE "django_content_type" DROP COLUMN "name"; args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('contenttypes', '0002_remove_content_type_name', '2024-01-10 20:13:11.537944') RETURNING "django_migrations"."id"; args=('contenttypes', '0002_remove_content_type_name', '2024-01-10 20:13:11.537944'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL); (params None)
+(0.000) CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL); args=None; alias=default
+CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE); (params None)
+(0.000) CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE); args=None; alias=default
+CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); (params ())
+(0.000) CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); args=(); alias=default
+CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params ())
+(0.000) CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); args=(); alias=default
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id"); (params ())
+(0.000) CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id"); args=(); alias=default
+CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params ())
+(0.000) CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); args=(); alias=default
+CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params ())
+(0.000) CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); args=(); alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0001_initial', '2024-01-10 20:13:11.561102') RETURNING "django_migrations"."id"; args=('auth', '0001_initial', '2024-01-10 20:13:11.561102'); alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL); (params None)
+(0.000) CREATE TABLE "new__auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL); args=None; alias=default
+INSERT INTO "new__auth_permission" ("id", "content_type_id", "codename", "name") SELECT "id", "content_type_id", "codename", "name" FROM "auth_permission"; (params ())
+(0.000) INSERT INTO "new__auth_permission" ("id", "content_type_id", "codename", "name") SELECT "id", "content_type_id", "codename", "name" FROM "auth_permission"; args=(); alias=default
+DROP TABLE "auth_permission"; (params ())
+(0.000) DROP TABLE "auth_permission"; args=(); alias=default
+ALTER TABLE "new__auth_permission" RENAME TO "auth_permission"; (params ())
+(0.016) ALTER TABLE "new__auth_permission" RENAME TO "auth_permission"; args=(); alias=default
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); (params ())
+(0.000) CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); args=(); alias=default
+CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params ())
+(0.000) CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0002_alter_permission_name_max_length', '2024-01-10 20:13:11.577056') RETURNING "django_migrations"."id"; args=('auth', '0002_alter_permission_name_max_length', '2024-01-10 20:13:11.577056'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.016) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0003_alter_user_email_max_length', '2024-01-10 20:13:11.589024') RETURNING "django_migrations"."id"; args=('auth', '0003_alter_user_email_max_length', '2024-01-10 20:13:11.589024'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0004_alter_user_username_opts', '2024-01-10 20:13:11.601868') RETURNING "django_migrations"."id"; args=('auth', '0004_alter_user_username_opts', '2024-01-10 20:13:11.601868'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0005_alter_user_last_login_null', '2024-01-10 20:13:11.612872') RETURNING "django_migrations"."id"; args=('auth', '0005_alter_user_last_login_null', '2024-01-10 20:13:11.612872'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0006_require_contenttypes_0002', '2024-01-10 20:13:11.622813') RETURNING "django_migrations"."id"; args=('auth', '0006_require_contenttypes_0002', '2024-01-10 20:13:11.622813'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0007_alter_validators_add_error_messages', '2024-01-10 20:13:11.640004') RETURNING "django_migrations"."id"; args=('auth', '0007_alter_validators_add_error_messages', '2024-01-10 20:13:11.640004'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0008_alter_user_username_max_length', '2024-01-10 20:13:11.654379') RETURNING "django_migrations"."id"; args=('auth', '0008_alter_user_username_max_length', '2024-01-10 20:13:11.654379'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0009_alter_user_last_name_max_length', '2024-01-10 20:13:11.670335') RETURNING "django_migrations"."id"; args=('auth', '0009_alter_user_last_name_max_length', '2024-01-10 20:13:11.670335'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(150) NOT NULL UNIQUE); (params None)
+(0.000) CREATE TABLE "new__auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(150) NOT NULL UNIQUE); args=None; alias=default
+INSERT INTO "new__auth_group" ("id", "name") SELECT "id", "name" FROM "auth_group"; (params ())
+(0.000) INSERT INTO "new__auth_group" ("id", "name") SELECT "id", "name" FROM "auth_group"; args=(); alias=default
+DROP TABLE "auth_group"; (params ())
+(0.015) DROP TABLE "auth_group"; args=(); alias=default
+ALTER TABLE "new__auth_group" RENAME TO "auth_group"; (params ())
+(0.000) ALTER TABLE "new__auth_group" RENAME TO "auth_group"; args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0010_alter_group_name_max_length', '2024-01-10 20:13:11.688602') RETURNING "django_migrations"."id"; args=('auth', '0010_alter_group_name_max_length', '2024-01-10 20:13:11.688602'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0011_update_proxy_permissions', '2024-01-10 20:13:11.697483') RETURNING "django_migrations"."id"; args=('auth', '0011_update_proxy_permissions', '2024-01-10 20:13:11.697483'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0012_alter_user_first_name_max_length', '2024-01-10 20:13:11.710450') RETURNING "django_migrations"."id"; args=('auth', '0012_alter_user_first_name_max_length', '2024-01-10 20:13:11.710450'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.016) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "users_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(50) NOT NULL, "last_name" varchar(50) NOT NULL, "email" varchar(255) NOT NULL UNIQUE, "is_active" bool NOT NULL, "is_staff" bool NOT NULL, "profile_image" varchar(100) NULL, "age" integer NOT NULL, "is_online" bool NOT NULL, "gender" varchar(1) NULL, "country" varchar(50) NULL, "education" varchar(100) NULL, "work" varchar(100) NULL, "set_interest" bool NOT NULL); (params None)
+(0.000) CREATE TABLE "users_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(50) NOT NULL, "last_name" varchar(50) NOT NULL, "email" varchar(255) NOT NULL UNIQUE, "is_active" bool NOT NULL, "is_staff" bool NOT NULL, "profile_image" varchar(100) NULL, "age" integer NOT NULL, "is_online" bool NOT NULL, "gender" varchar(1) NULL, "country" varchar(50) NULL, "education" varchar(100) NULL, "work" varchar(100) NULL, "set_interest" bool NOT NULL); args=None; alias=default
+CREATE TABLE "users_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "users_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+CREATE TABLE "users_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "users_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+CREATE UNIQUE INDEX "users_user_groups_user_id_group_id_b88eab82_uniq" ON "users_user_groups" ("user_id", "group_id"); (params ())
+(0.000) CREATE UNIQUE INDEX "users_user_groups_user_id_group_id_b88eab82_uniq" ON "users_user_groups" ("user_id", "group_id"); args=(); alias=default
+CREATE INDEX "users_user_groups_user_id_5f6f5a90" ON "users_user_groups" ("user_id"); (params ())
+(0.000) CREATE INDEX "users_user_groups_user_id_5f6f5a90" ON "users_user_groups" ("user_id"); args=(); alias=default
+CREATE INDEX "users_user_groups_group_id_9afc8d0e" ON "users_user_groups" ("group_id"); (params ())
+(0.000) CREATE INDEX "users_user_groups_group_id_9afc8d0e" ON "users_user_groups" ("group_id"); args=(); alias=default
+CREATE UNIQUE INDEX "users_user_user_permissions_user_id_permission_id_43338c45_uniq" ON "users_user_user_permissions" ("user_id", "permission_id"); (params ())
+(0.000) CREATE UNIQUE INDEX "users_user_user_permissions_user_id_permission_id_43338c45_uniq" ON "users_user_user_permissions" ("user_id", "permission_id"); args=(); alias=default
+CREATE INDEX "users_user_user_permissions_user_id_20aca447" ON "users_user_user_permissions" ("user_id"); (params ())
+(0.000) CREATE INDEX "users_user_user_permissions_user_id_20aca447" ON "users_user_user_permissions" ("user_id"); args=(); alias=default
+CREATE INDEX "users_user_user_permissions_permission_id_0b93982e" ON "users_user_user_permissions" ("permission_id"); (params ())
+(0.000) CREATE INDEX "users_user_user_permissions_permission_id_0b93982e" ON "users_user_user_permissions" ("permission_id"); args=(); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('users', '0001_initial', '2024-01-10 20:13:11.739560') RETURNING "django_migrations"."id"; args=('users', '0001_initial', '2024-01-10 20:13:11.739560'); alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "action_time" datetime NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "action_time" datetime NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params ())
+(0.000) CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); args=(); alias=default
+CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params ())
+(0.000) CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); args=(); alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0001_initial', '2024-01-10 20:13:11.765640') RETURNING "django_migrations"."id"; args=('admin', '0001_initial', '2024-01-10 20:13:11.765640'); alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "action_time" datetime NOT NULL); (params None)
+(0.000) CREATE TABLE "new__django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "action_time" datetime NOT NULL); args=None; alias=default
+INSERT INTO "new__django_admin_log" ("id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time") SELECT "id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time" FROM "django_admin_log"; (params ())
+(0.000) INSERT INTO "new__django_admin_log" ("id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time") SELECT "id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time" FROM "django_admin_log"; args=(); alias=default
+DROP TABLE "django_admin_log"; (params ())
+(0.000) DROP TABLE "django_admin_log"; args=(); alias=default
+ALTER TABLE "new__django_admin_log" RENAME TO "django_admin_log"; (params ())
+(0.000) ALTER TABLE "new__django_admin_log" RENAME TO "django_admin_log"; args=(); alias=default
+CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params ())
+(0.000) CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); args=(); alias=default
+CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params ())
+(0.000) CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0002_logentry_remove_auto_add', '2024-01-10 20:13:11.788610') RETURNING "django_migrations"."id"; args=('admin', '0002_logentry_remove_auto_add', '2024-01-10 20:13:11.788610'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0003_logentry_add_action_flag_choices', '2024-01-10 20:13:11.805683') RETURNING "django_migrations"."id"; args=('admin', '0003_logentry_add_action_flag_choices', '2024-01-10 20:13:11.805683'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "chat_chatroom" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); (params None)
+(0.000) CREATE TABLE "chat_chatroom" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); args=None; alias=default
+CREATE TABLE "chat_message" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content" text NOT NULL, "timestamp" datetime NOT NULL, "is_seen" bool NOT NULL); (params None)
+(0.000) CREATE TABLE "chat_message" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content" text NOT NULL, "timestamp" datetime NOT NULL, "is_seen" bool NOT NULL); args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('chat', '0001_initial', '2024-01-10 20:13:11.821635') RETURNING "django_migrations"."id"; args=('chat', '0001_initial', '2024-01-10 20:13:11.821635'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.016) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "chat_chatroom_members" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "chatroom_id" bigint NOT NULL REFERENCES "chat_chatroom" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "chat_chatroom_members" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "chatroom_id" bigint NOT NULL REFERENCES "chat_chatroom" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+CREATE TABLE "new__chat_message" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content" text NOT NULL, "timestamp" datetime NOT NULL, "is_seen" bool NOT NULL, "room_id" bigint NOT NULL REFERENCES "chat_chatroom" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__chat_message" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content" text NOT NULL, "timestamp" datetime NOT NULL, "is_seen" bool NOT NULL, "room_id" bigint NOT NULL REFERENCES "chat_chatroom" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__chat_message" ("id", "content", "timestamp", "is_seen", "room_id") SELECT "id", "content", "timestamp", "is_seen", NULL FROM "chat_message"; (params ())
+(0.000) INSERT INTO "new__chat_message" ("id", "content", "timestamp", "is_seen", "room_id") SELECT "id", "content", "timestamp", "is_seen", NULL FROM "chat_message"; args=(); alias=default
+DROP TABLE "chat_message"; (params ())
+(0.000) DROP TABLE "chat_message"; args=(); alias=default
+ALTER TABLE "new__chat_message" RENAME TO "chat_message"; (params ())
+(0.000) ALTER TABLE "new__chat_message" RENAME TO "chat_message"; args=(); alias=default
+CREATE UNIQUE INDEX "chat_chatroom_members_chatroom_id_user_id_15fce157_uniq" ON "chat_chatroom_members" ("chatroom_id", "user_id"); (params ())
+(0.000) CREATE UNIQUE INDEX "chat_chatroom_members_chatroom_id_user_id_15fce157_uniq" ON "chat_chatroom_members" ("chatroom_id", "user_id"); args=(); alias=default
+CREATE INDEX "chat_chatroom_members_chatroom_id_05f3abe3" ON "chat_chatroom_members" ("chatroom_id"); (params ())
+(0.000) CREATE INDEX "chat_chatroom_members_chatroom_id_05f3abe3" ON "chat_chatroom_members" ("chatroom_id"); args=(); alias=default
+CREATE INDEX "chat_chatroom_members_user_id_23979fc8" ON "chat_chatroom_members" ("user_id"); (params ())
+(0.000) CREATE INDEX "chat_chatroom_members_user_id_23979fc8" ON "chat_chatroom_members" ("user_id"); args=(); alias=default
+CREATE INDEX "chat_message_room_id_5e7d8d78" ON "chat_message" ("room_id"); (params ())
+(0.000) CREATE INDEX "chat_message_room_id_5e7d8d78" ON "chat_message" ("room_id"); args=(); alias=default
+CREATE TABLE "new__chat_message" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content" text NOT NULL, "timestamp" datetime NOT NULL, "is_seen" bool NOT NULL, "room_id" bigint NOT NULL REFERENCES "chat_chatroom" ("id") DEFERRABLE INITIALLY DEFERRED, "sender_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__chat_message" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content" text NOT NULL, "timestamp" datetime NOT NULL, "is_seen" bool NOT NULL, "room_id" bigint NOT NULL REFERENCES "chat_chatroom" ("id") DEFERRABLE INITIALLY DEFERRED, "sender_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__chat_message" ("id", "content", "timestamp", "is_seen", "room_id", "sender_id") SELECT "id", "content", "timestamp", "is_seen", "room_id", NULL FROM "chat_message"; (params ())
+(0.000) INSERT INTO "new__chat_message" ("id", "content", "timestamp", "is_seen", "room_id", "sender_id") SELECT "id", "content", "timestamp", "is_seen", "room_id", NULL FROM "chat_message"; args=(); alias=default
+DROP TABLE "chat_message"; (params ())
+(0.000) DROP TABLE "chat_message"; args=(); alias=default
+ALTER TABLE "new__chat_message" RENAME TO "chat_message"; (params ())
+(0.000) ALTER TABLE "new__chat_message" RENAME TO "chat_message"; args=(); alias=default
+CREATE INDEX "chat_message_room_id_5e7d8d78" ON "chat_message" ("room_id"); (params ())
+(0.000) CREATE INDEX "chat_message_room_id_5e7d8d78" ON "chat_message" ("room_id"); args=(); alias=default
+CREATE INDEX "chat_message_sender_id_991c686c" ON "chat_message" ("sender_id"); (params ())
+(0.000) CREATE INDEX "chat_message_sender_id_991c686c" ON "chat_message" ("sender_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('chat', '0002_initial', '2024-01-10 20:13:11.885479') RETURNING "django_migrations"."id"; args=('chat', '0002_initial', '2024-01-10 20:13:11.885479'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "taggit_tag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL UNIQUE, "slug" varchar(100) NOT NULL UNIQUE); (params None)
+(0.000) CREATE TABLE "taggit_tag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL UNIQUE, "slug" varchar(100) NOT NULL UNIQUE); args=None; alias=default
+CREATE TABLE "taggit_taggeditem" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" integer NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "tag_id" integer NOT NULL REFERENCES "taggit_tag" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "taggit_taggeditem" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" integer NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "tag_id" integer NOT NULL REFERENCES "taggit_tag" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+CREATE INDEX "taggit_taggeditem_object_id_e2d7d1df" ON "taggit_taggeditem" ("object_id"); (params ())
+(0.000) CREATE INDEX "taggit_taggeditem_object_id_e2d7d1df" ON "taggit_taggeditem" ("object_id"); args=(); alias=default
+CREATE INDEX "taggit_taggeditem_content_type_id_9957a03c" ON "taggit_taggeditem" ("content_type_id"); (params ())
+(0.000) CREATE INDEX "taggit_taggeditem_content_type_id_9957a03c" ON "taggit_taggeditem" ("content_type_id"); args=(); alias=default
+CREATE INDEX "taggit_taggeditem_tag_id_f4f5b767" ON "taggit_taggeditem" ("tag_id"); (params ())
+(0.000) CREATE INDEX "taggit_taggeditem_tag_id_f4f5b767" ON "taggit_taggeditem" ("tag_id"); args=(); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('taggit', '0001_initial', '2024-01-10 20:13:11.912075') RETURNING "django_migrations"."id"; args=('taggit', '0001_initial', '2024-01-10 20:13:11.912075'); alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE INDEX "taggit_tagg_content_8fc721_idx" ON "taggit_taggeditem" ("content_type_id", "object_id"); (params None)
+(0.000) CREATE INDEX "taggit_tagg_content_8fc721_idx" ON "taggit_taggeditem" ("content_type_id", "object_id"); args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('taggit', '0002_auto_20150616_2121', '2024-01-10 20:13:11.927037') RETURNING "django_migrations"."id"; args=('taggit', '0002_auto_20150616_2121', '2024-01-10 20:13:11.927037'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__taggit_taggeditem" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" integer NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "tag_id" integer NOT NULL REFERENCES "taggit_tag" ("id") DEFERRABLE INITIALLY DEFERRED, CONSTRAINT "taggit_taggeditem_content_type_id_object_id_tag_id_4bb97a8e_uniq" UNIQUE ("content_type_id", "object_id", "tag_id")); (params None)
+(0.000) CREATE TABLE "new__taggit_taggeditem" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" integer NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "tag_id" integer NOT NULL REFERENCES "taggit_tag" ("id") DEFERRABLE INITIALLY DEFERRED, CONSTRAINT "taggit_taggeditem_content_type_id_object_id_tag_id_4bb97a8e_uniq" UNIQUE ("content_type_id", "object_id", "tag_id")); args=None; alias=default
+INSERT INTO "new__taggit_taggeditem" ("id", "object_id", "content_type_id", "tag_id") SELECT "id", "object_id", "content_type_id", "tag_id" FROM "taggit_taggeditem"; (params ())
+(0.000) INSERT INTO "new__taggit_taggeditem" ("id", "object_id", "content_type_id", "tag_id") SELECT "id", "object_id", "content_type_id", "tag_id" FROM "taggit_taggeditem"; args=(); alias=default
+DROP TABLE "taggit_taggeditem"; (params ())
+(0.000) DROP TABLE "taggit_taggeditem"; args=(); alias=default
+ALTER TABLE "new__taggit_taggeditem" RENAME TO "taggit_taggeditem"; (params ())
+(0.000) ALTER TABLE "new__taggit_taggeditem" RENAME TO "taggit_taggeditem"; args=(); alias=default
+CREATE INDEX "taggit_taggeditem_object_id_e2d7d1df" ON "taggit_taggeditem" ("object_id"); (params ())
+(0.000) CREATE INDEX "taggit_taggeditem_object_id_e2d7d1df" ON "taggit_taggeditem" ("object_id"); args=(); alias=default
+CREATE INDEX "taggit_taggeditem_content_type_id_9957a03c" ON "taggit_taggeditem" ("content_type_id"); (params ())
+(0.000) CREATE INDEX "taggit_taggeditem_content_type_id_9957a03c" ON "taggit_taggeditem" ("content_type_id"); args=(); alias=default
+CREATE INDEX "taggit_taggeditem_tag_id_f4f5b767" ON "taggit_taggeditem" ("tag_id"); (params ())
+(0.000) CREATE INDEX "taggit_taggeditem_tag_id_f4f5b767" ON "taggit_taggeditem" ("tag_id"); args=(); alias=default
+CREATE INDEX "taggit_tagg_content_8fc721_idx" ON "taggit_taggeditem" ("content_type_id", "object_id"); (params ())
+(0.000) CREATE INDEX "taggit_tagg_content_8fc721_idx" ON "taggit_taggeditem" ("content_type_id", "object_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('taggit', '0003_taggeditem_add_unique_index', '2024-01-10 20:13:11.944687') RETURNING "django_migrations"."id"; args=('taggit', '0003_taggeditem_add_unique_index', '2024-01-10 20:13:11.944687'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('taggit', '0004_alter_taggeditem_content_type_alter_taggeditem_tag', '2024-01-10 20:13:11.974984') RETURNING "django_migrations"."id"; args=('taggit', '0004_alter_taggeditem_content_type_alter_taggeditem_tag', '2024-01-10 20:13:11.974984'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__taggit_tag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL UNIQUE, "slug" varchar(100) NOT NULL UNIQUE); (params None)
+(0.000) CREATE TABLE "new__taggit_tag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL UNIQUE, "slug" varchar(100) NOT NULL UNIQUE); args=None; alias=default
+INSERT INTO "new__taggit_tag" ("id", "name", "slug") SELECT "id", "name", "slug" FROM "taggit_tag"; (params ())
+(0.000) INSERT INTO "new__taggit_tag" ("id", "name", "slug") SELECT "id", "name", "slug" FROM "taggit_tag"; args=(); alias=default
+DROP TABLE "taggit_tag"; (params ())
+(0.000) DROP TABLE "taggit_tag"; args=(); alias=default
+ALTER TABLE "new__taggit_tag" RENAME TO "taggit_tag"; (params ())
+(0.000) ALTER TABLE "new__taggit_tag" RENAME TO "taggit_tag"; args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('taggit', '0005_auto_20220424_2025', '2024-01-10 20:13:11.992403') RETURNING "django_migrations"."id"; args=('taggit', '0005_auto_20220424_2025', '2024-01-10 20:13:11.992403'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.016) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) SELECT sql FROM sqlite_master WHERE type='table' and name="taggit_taggeditem"; args=None; alias=default
+(0.000) PRAGMA table_xinfo("taggit_taggeditem"); args=None; alias=default
+(0.000) 
+            SELECT sql
+            FROM sqlite_master
+            WHERE type = 'table' AND name = 'taggit_taggeditem'
+        ; args=['taggit_taggeditem']; alias=default
+(0.000) SAVEPOINT "s13140_x1"; args=None; alias=default
+(0.000) SELECT JSON('{"a": "b"}'); args=None; alias=default
+(0.000) RELEASE SAVEPOINT "s13140_x1"; args=None; alias=default
+(0.000) 
+                    SELECT sql
+                    FROM sqlite_master
+                    WHERE
+                        type = 'table' AND
+                        name = 'taggit_taggeditem' AND
+                        sql LIKE '%json_valid("id")%'
+                ; args=['taggit_taggeditem', '%json_valid("id")%']; alias=default
+(0.000) 
+                    SELECT sql
+                    FROM sqlite_master
+                    WHERE
+                        type = 'table' AND
+                        name = 'taggit_taggeditem' AND
+                        sql LIKE '%json_valid("object_id")%'
+                ; args=['taggit_taggeditem', '%json_valid("object_id")%']; alias=default
+(0.000) 
+                    SELECT sql
+                    FROM sqlite_master
+                    WHERE
+                        type = 'table' AND
+                        name = 'taggit_taggeditem' AND
+                        sql LIKE '%json_valid("content_type_id")%'
+                ; args=['taggit_taggeditem', '%json_valid("content_type_id")%']; alias=default
+(0.000) 
+                    SELECT sql
+                    FROM sqlite_master
+                    WHERE
+                        type = 'table' AND
+                        name = 'taggit_taggeditem' AND
+                        sql LIKE '%json_valid("tag_id")%'
+                ; args=['taggit_taggeditem', '%json_valid("tag_id")%']; alias=default
+(0.000) PRAGMA index_list("taggit_taggeditem"); args=None; alias=default
+(0.000) SELECT sql FROM sqlite_master WHERE type='index' AND name="taggit_tagg_content_8fc721_idx"; args=None; alias=default
+(0.000) PRAGMA index_info("taggit_tagg_content_8fc721_idx"); args=None; alias=default
+(0.000) SELECT sql FROM sqlite_master WHERE type='index' AND name="taggit_taggeditem_tag_id_f4f5b767"; args=None; alias=default
+(0.000) PRAGMA index_info("taggit_taggeditem_tag_id_f4f5b767"); args=None; alias=default
+(0.000) SELECT sql FROM sqlite_master WHERE type='index' AND name="taggit_taggeditem_content_type_id_9957a03c"; args=None; alias=default
+(0.000) PRAGMA index_info("taggit_taggeditem_content_type_id_9957a03c"); args=None; alias=default
+(0.000) SELECT sql FROM sqlite_master WHERE type='index' AND name="taggit_taggeditem_object_id_e2d7d1df"; args=None; alias=default
+(0.000) PRAGMA index_info("taggit_taggeditem_object_id_e2d7d1df"); args=None; alias=default
+(0.000) SELECT sql FROM sqlite_master WHERE type='index' AND name="sqlite_autoindex_taggit_taggeditem_1"; args=None; alias=default
+(0.000) PRAGMA table_info("taggit_taggeditem"); args=None; alias=default
+(0.000) PRAGMA foreign_key_list("taggit_taggeditem"); args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('taggit', '0006_rename_taggeditem_content_type_object_id_taggit_tagg_content_8fc721_idx', '2024-01-10 20:13:12.035891') RETURNING "django_migrations"."id"; args=('taggit', '0006_rename_taggeditem_content_type_object_id_taggit_tagg_content_8fc721_idx', '2024-01-10 20:13:12.035891'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "post_comment" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "body" text NOT NULL, "created" datetime NOT NULL); (params None)
+(0.000) CREATE TABLE "post_comment" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "body" text NOT NULL, "created" datetime NOT NULL); args=None; alias=default
+CREATE TABLE "post_follow" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); (params None)
+(0.000) CREATE TABLE "post_follow" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); args=None; alias=default
+CREATE TABLE "post_interest" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); (params None)
+(0.000) CREATE TABLE "post_interest" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); args=None; alias=default
+CREATE TABLE "post_notification" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "notification_type" varchar(20) NOT NULL, "created" datetime NOT NULL, "is_seen" bool NOT NULL); (params None)
+(0.000) CREATE TABLE "post_notification" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "notification_type" varchar(20) NOT NULL, "created" datetime NOT NULL, "is_seen" bool NOT NULL); args=None; alias=default
+CREATE TABLE "post_post" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_img" varchar(100) NOT NULL, "content" text NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "is_deleted" bool NOT NULL, "is_blocked" bool NOT NULL); (params None)
+(0.000) CREATE TABLE "post_post" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_img" varchar(100) NOT NULL, "content" text NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "is_deleted" bool NOT NULL, "is_blocked" bool NOT NULL); args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('post', '0001_initial', '2024-01-10 20:13:12.054966') RETURNING "django_migrations"."id"; args=('post', '0001_initial', '2024-01-10 20:13:12.054966'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__post_comment" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "body" text NOT NULL, "created" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__post_comment" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "body" text NOT NULL, "created" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__post_comment" ("id", "body", "created", "user_id") SELECT "id", "body", "created", NULL FROM "post_comment"; (params ())
+(0.000) INSERT INTO "new__post_comment" ("id", "body", "created", "user_id") SELECT "id", "body", "created", NULL FROM "post_comment"; args=(); alias=default
+DROP TABLE "post_comment"; (params ())
+(0.000) DROP TABLE "post_comment"; args=(); alias=default
+ALTER TABLE "new__post_comment" RENAME TO "post_comment"; (params ())
+(0.000) ALTER TABLE "new__post_comment" RENAME TO "post_comment"; args=(); alias=default
+CREATE INDEX "post_comment_user_id_cbfe4e66" ON "post_comment" ("user_id"); (params ())
+(0.000) CREATE INDEX "post_comment_user_id_cbfe4e66" ON "post_comment" ("user_id"); args=(); alias=default
+CREATE TABLE "new__post_follow" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "follower_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__post_follow" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "follower_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__post_follow" ("id", "follower_id") SELECT "id", NULL FROM "post_follow"; (params ())
+(0.000) INSERT INTO "new__post_follow" ("id", "follower_id") SELECT "id", NULL FROM "post_follow"; args=(); alias=default
+DROP TABLE "post_follow"; (params ())
+(0.000) DROP TABLE "post_follow"; args=(); alias=default
+ALTER TABLE "new__post_follow" RENAME TO "post_follow"; (params ())
+(0.000) ALTER TABLE "new__post_follow" RENAME TO "post_follow"; args=(); alias=default
+CREATE INDEX "post_follow_follower_id_30a4d4cf" ON "post_follow" ("follower_id"); (params ())
+(0.000) CREATE INDEX "post_follow_follower_id_30a4d4cf" ON "post_follow" ("follower_id"); args=(); alias=default
+CREATE TABLE "new__post_follow" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "follower_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "following_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__post_follow" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "follower_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "following_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__post_follow" ("id", "follower_id", "following_id") SELECT "id", "follower_id", NULL FROM "post_follow"; (params ())
+(0.000) INSERT INTO "new__post_follow" ("id", "follower_id", "following_id") SELECT "id", "follower_id", NULL FROM "post_follow"; args=(); alias=default
+DROP TABLE "post_follow"; (params ())
+(0.000) DROP TABLE "post_follow"; args=(); alias=default
+ALTER TABLE "new__post_follow" RENAME TO "post_follow"; (params ())
+(0.016) ALTER TABLE "new__post_follow" RENAME TO "post_follow"; args=(); alias=default
+CREATE INDEX "post_follow_follower_id_30a4d4cf" ON "post_follow" ("follower_id"); (params ())
+(0.000) CREATE INDEX "post_follow_follower_id_30a4d4cf" ON "post_follow" ("follower_id"); args=(); alias=default
+CREATE INDEX "post_follow_following_id_1cb2c456" ON "post_follow" ("following_id"); (params ())
+(0.000) CREATE INDEX "post_follow_following_id_1cb2c456" ON "post_follow" ("following_id"); args=(); alias=default
+CREATE TABLE "post_interest_interests" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "interest_id" bigint NOT NULL REFERENCES "post_interest" ("id") DEFERRABLE INITIALLY DEFERRED, "tag_id" integer NOT NULL REFERENCES "taggit_tag" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "post_interest_interests" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "interest_id" bigint NOT NULL REFERENCES "post_interest" ("id") DEFERRABLE INITIALLY DEFERRED, "tag_id" integer NOT NULL REFERENCES "taggit_tag" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+CREATE TABLE "new__post_interest" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" bigint NOT NULL UNIQUE REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__post_interest" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" bigint NOT NULL UNIQUE REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__post_interest" ("id", "user_id") SELECT "id", NULL FROM "post_interest"; (params ())
+(0.000) INSERT INTO "new__post_interest" ("id", "user_id") SELECT "id", NULL FROM "post_interest"; args=(); alias=default
+DROP TABLE "post_interest"; (params ())
+(0.000) DROP TABLE "post_interest"; args=(); alias=default
+ALTER TABLE "new__post_interest" RENAME TO "post_interest"; (params ())
+(0.000) ALTER TABLE "new__post_interest" RENAME TO "post_interest"; args=(); alias=default
+CREATE UNIQUE INDEX "post_interest_interests_interest_id_tag_id_2e4be09f_uniq" ON "post_interest_interests" ("interest_id", "tag_id"); (params ())
+(0.000) CREATE UNIQUE INDEX "post_interest_interests_interest_id_tag_id_2e4be09f_uniq" ON "post_interest_interests" ("interest_id", "tag_id"); args=(); alias=default
+CREATE INDEX "post_interest_interests_interest_id_1906a8c3" ON "post_interest_interests" ("interest_id"); (params ())
+(0.000) CREATE INDEX "post_interest_interests_interest_id_1906a8c3" ON "post_interest_interests" ("interest_id"); args=(); alias=default
+CREATE INDEX "post_interest_interests_tag_id_30d18cd7" ON "post_interest_interests" ("tag_id"); (params ())
+(0.000) CREATE INDEX "post_interest_interests_tag_id_30d18cd7" ON "post_interest_interests" ("tag_id"); args=(); alias=default
+ALTER TABLE "post_notification" ADD COLUMN "comment_id" bigint NULL REFERENCES "post_comment" ("id") DEFERRABLE INITIALLY DEFERRED; (params [])
+(0.000) ALTER TABLE "post_notification" ADD COLUMN "comment_id" bigint NULL REFERENCES "post_comment" ("id") DEFERRABLE INITIALLY DEFERRED; args=[]; alias=default
+ALTER TABLE "post_notification" ADD COLUMN "from_user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params [])
+(0.000) ALTER TABLE "post_notification" ADD COLUMN "from_user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=[]; alias=default
+ALTER TABLE "post_notification" ADD COLUMN "to_user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params [])
+(0.000) ALTER TABLE "post_notification" ADD COLUMN "to_user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=[]; alias=default
+CREATE TABLE "new__post_post" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_img" varchar(100) NOT NULL, "content" text NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "is_deleted" bool NOT NULL, "is_blocked" bool NOT NULL, "author_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__post_post" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_img" varchar(100) NOT NULL, "content" text NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "is_deleted" bool NOT NULL, "is_blocked" bool NOT NULL, "author_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__post_post" ("id", "post_img", "content", "created_at", "updated_at", "is_deleted", "is_blocked", "author_id") SELECT "id", "post_img", "content", "created_at", "updated_at", "is_deleted", "is_blocked", NULL FROM "post_post"; (params ())
+(0.000) INSERT INTO "new__post_post" ("id", "post_img", "content", "created_at", "updated_at", "is_deleted", "is_blocked", "author_id") SELECT "id", "post_img", "content", "created_at", "updated_at", "is_deleted", "is_blocked", NULL FROM "post_post"; args=(); alias=default
+DROP TABLE "post_post"; (params ())
+(0.000) DROP TABLE "post_post"; args=(); alias=default
+ALTER TABLE "new__post_post" RENAME TO "post_post"; (params ())
+(0.000) ALTER TABLE "new__post_post" RENAME TO "post_post"; args=(); alias=default
+CREATE INDEX "post_notification_comment_id_6da57b4f" ON "post_notification" ("comment_id"); (params ())
+(0.000) CREATE INDEX "post_notification_comment_id_6da57b4f" ON "post_notification" ("comment_id"); args=(); alias=default
+CREATE INDEX "post_notification_from_user_id_10e4336f" ON "post_notification" ("from_user_id"); (params ())
+(0.000) CREATE INDEX "post_notification_from_user_id_10e4336f" ON "post_notification" ("from_user_id"); args=(); alias=default
+CREATE INDEX "post_notification_to_user_id_1a5fc1dd" ON "post_notification" ("to_user_id"); (params ())
+(0.000) CREATE INDEX "post_notification_to_user_id_1a5fc1dd" ON "post_notification" ("to_user_id"); args=(); alias=default
+CREATE INDEX "post_post_author_id_99d134d5" ON "post_post" ("author_id"); (params ())
+(0.000) CREATE INDEX "post_post_author_id_99d134d5" ON "post_post" ("author_id"); args=(); alias=default
+CREATE TABLE "post_post_likes" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_id" bigint NOT NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "post_post_likes" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_id" bigint NOT NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+CREATE TABLE "post_post_reported_by_users" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_id" bigint NOT NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "post_post_reported_by_users" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "post_id" bigint NOT NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+ALTER TABLE "post_notification" ADD COLUMN "post_id" bigint NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params [])
+(0.000) ALTER TABLE "post_notification" ADD COLUMN "post_id" bigint NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=[]; alias=default
+CREATE TABLE "new__post_comment" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "body" text NOT NULL, "created" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "post_id" bigint NOT NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__post_comment" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "body" text NOT NULL, "created" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "post_id" bigint NOT NULL REFERENCES "post_post" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__post_comment" ("id", "body", "created", "user_id", "post_id") SELECT "id", "body", "created", "user_id", NULL FROM "post_comment"; (params ())
+(0.000) INSERT INTO "new__post_comment" ("id", "body", "created", "user_id", "post_id") SELECT "id", "body", "created", "user_id", NULL FROM "post_comment"; args=(); alias=default
+DROP TABLE "post_comment"; (params ())
+(0.000) DROP TABLE "post_comment"; args=(); alias=default
+ALTER TABLE "new__post_comment" RENAME TO "post_comment"; (params ())
+(0.000) ALTER TABLE "new__post_comment" RENAME TO "post_comment"; args=(); alias=default
+CREATE UNIQUE INDEX "post_post_likes_post_id_user_id_eb89d62d_uniq" ON "post_post_likes" ("post_id", "user_id"); (params ())
+(0.000) CREATE UNIQUE INDEX "post_post_likes_post_id_user_id_eb89d62d_uniq" ON "post_post_likes" ("post_id", "user_id"); args=(); alias=default
+CREATE INDEX "post_post_likes_post_id_9b7090a0" ON "post_post_likes" ("post_id"); (params ())
+(0.000) CREATE INDEX "post_post_likes_post_id_9b7090a0" ON "post_post_likes" ("post_id"); args=(); alias=default
+CREATE INDEX "post_post_likes_user_id_42d3de6d" ON "post_post_likes" ("user_id"); (params ())
+(0.000) CREATE INDEX "post_post_likes_user_id_42d3de6d" ON "post_post_likes" ("user_id"); args=(); alias=default
+CREATE UNIQUE INDEX "post_post_reported_by_users_post_id_user_id_1305f12f_uniq" ON "post_post_reported_by_users" ("post_id", "user_id"); (params ())
+(0.000) CREATE UNIQUE INDEX "post_post_reported_by_users_post_id_user_id_1305f12f_uniq" ON "post_post_reported_by_users" ("post_id", "user_id"); args=(); alias=default
+CREATE INDEX "post_post_reported_by_users_post_id_da762175" ON "post_post_reported_by_users" ("post_id"); (params ())
+(0.000) CREATE INDEX "post_post_reported_by_users_post_id_da762175" ON "post_post_reported_by_users" ("post_id"); args=(); alias=default
+CREATE INDEX "post_post_reported_by_users_user_id_d6960b03" ON "post_post_reported_by_users" ("user_id"); (params ())
+(0.000) CREATE INDEX "post_post_reported_by_users_user_id_d6960b03" ON "post_post_reported_by_users" ("user_id"); args=(); alias=default
+CREATE INDEX "post_notification_post_id_0bd10024" ON "post_notification" ("post_id"); (params ())
+(0.000) CREATE INDEX "post_notification_post_id_0bd10024" ON "post_notification" ("post_id"); args=(); alias=default
+CREATE INDEX "post_comment_user_id_cbfe4e66" ON "post_comment" ("user_id"); (params ())
+(0.000) CREATE INDEX "post_comment_user_id_cbfe4e66" ON "post_comment" ("user_id"); args=(); alias=default
+CREATE INDEX "post_comment_post_id_ddc2d815" ON "post_comment" ("post_id"); (params ())
+(0.000) CREATE INDEX "post_comment_post_id_ddc2d815" ON "post_comment" ("post_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('post', '0002_initial', '2024-01-10 20:13:12.301011') RETURNING "django_migrations"."id"; args=('post', '0002_initial', '2024-01-10 20:13:12.301011'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL); (params None)
+(0.000) CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL); args=None; alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params ())
+(0.000) CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); args=(); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('sessions', '0001_initial', '2024-01-10 20:13:12.314517') RETURNING "django_migrations"."id"; args=('sessions', '0001_initial', '2024-01-10 20:13:12.314517'); alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "token_blacklist_blacklistedtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "blacklisted_at" datetime NOT NULL); (params None)
+(0.000) CREATE TABLE "token_blacklist_blacklistedtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "blacklisted_at" datetime NOT NULL); args=None; alias=default
+CREATE TABLE "token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "jti" char(32) NOT NULL UNIQUE, "token" text NOT NULL, "created_at" datetime NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "jti" char(32) NOT NULL UNIQUE, "token" text NOT NULL, "created_at" datetime NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+CREATE TABLE "new__token_blacklist_blacklistedtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "blacklisted_at" datetime NOT NULL, "token_id" integer NOT NULL UNIQUE REFERENCES "token_blacklist_outstandingtoken" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_blacklistedtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "blacklisted_at" datetime NOT NULL, "token_id" integer NOT NULL UNIQUE REFERENCES "token_blacklist_outstandingtoken" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__token_blacklist_blacklistedtoken" ("id", "blacklisted_at", "token_id") SELECT "id", "blacklisted_at", NULL FROM "token_blacklist_blacklistedtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_blacklistedtoken" ("id", "blacklisted_at", "token_id") SELECT "id", "blacklisted_at", NULL FROM "token_blacklist_blacklistedtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_blacklistedtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_blacklistedtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_blacklistedtoken" RENAME TO "token_blacklist_blacklistedtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_blacklistedtoken" RENAME TO "token_blacklist_blacklistedtoken"; args=(); alias=default
+CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); (params ())
+(0.000) CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0001_initial', '2024-01-10 20:13:12.364141') RETURNING "django_migrations"."id"; args=('token_blacklist', '0001_initial', '2024-01-10 20:13:12.364141'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+ALTER TABLE "token_blacklist_outstandingtoken" ADD COLUMN "jti_hex" varchar(255) NULL; (params [])
+(0.000) ALTER TABLE "token_blacklist_outstandingtoken" ADD COLUMN "jti_hex" varchar(255) NULL; args=[]; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0002_outstandingtoken_jti_hex', '2024-01-10 20:13:12.387080') RETURNING "django_migrations"."id"; args=('token_blacklist', '0002_outstandingtoken_jti_hex', '2024-01-10 20:13:12.387080'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) SELECT "token_blacklist_outstandingtoken"."id", "token_blacklist_outstandingtoken"."jti", "token_blacklist_outstandingtoken"."token", "token_blacklist_outstandingtoken"."created_at", "token_blacklist_outstandingtoken"."expires_at", "token_blacklist_outstandingtoken"."user_id", "token_blacklist_outstandingtoken"."jti_hex" FROM "token_blacklist_outstandingtoken" ORDER BY "token_blacklist_outstandingtoken"."user_id" ASC; args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0003_auto_20171017_2007', '2024-01-10 20:13:12.421301') RETURNING "django_migrations"."id"; args=('token_blacklist', '0003_auto_20171017_2007', '2024-01-10 20:13:12.421301'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "jti" char(32) NOT NULL UNIQUE, "token" text NOT NULL, "created_at" datetime NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti_hex" varchar(255) NOT NULL UNIQUE); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "jti" char(32) NOT NULL UNIQUE, "token" text NOT NULL, "created_at" datetime NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti_hex" varchar(255) NOT NULL UNIQUE); args=None; alias=default
+INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "jti", "token", "created_at", "expires_at", "user_id", "jti_hex") SELECT "id", "jti", "token", "created_at", "expires_at", "user_id", coalesce("jti_hex", NULL) FROM "token_blacklist_outstandingtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "jti", "token", "created_at", "expires_at", "user_id", "jti_hex") SELECT "id", "jti", "token", "created_at", "expires_at", "user_id", coalesce("jti_hex", NULL) FROM "token_blacklist_outstandingtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_outstandingtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_outstandingtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; args=(); alias=default
+CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); (params ())
+(0.000) CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0004_auto_20171017_2013', '2024-01-10 20:13:12.449900') RETURNING "django_migrations"."id"; args=('token_blacklist', '0004_auto_20171017_2013', '2024-01-10 20:13:12.449900'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "created_at" datetime NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti_hex" varchar(255) NOT NULL UNIQUE); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "created_at" datetime NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti_hex" varchar(255) NOT NULL UNIQUE); args=None; alias=default
+INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "token", "created_at", "expires_at", "user_id", "jti_hex") SELECT "id", "token", "created_at", "expires_at", "user_id", "jti_hex" FROM "token_blacklist_outstandingtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "token", "created_at", "expires_at", "user_id", "jti_hex") SELECT "id", "token", "created_at", "expires_at", "user_id", "jti_hex" FROM "token_blacklist_outstandingtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_outstandingtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_outstandingtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; args=(); alias=default
+CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); (params ())
+(0.000) CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0005_remove_outstandingtoken_jti', '2024-01-10 20:13:12.476855') RETURNING "django_migrations"."id"; args=('token_blacklist', '0005_remove_outstandingtoken_jti', '2024-01-10 20:13:12.476855'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+ALTER TABLE "token_blacklist_outstandingtoken" RENAME COLUMN "jti_hex" TO "jti"; (params ())
+(0.000) ALTER TABLE "token_blacklist_outstandingtoken" RENAME COLUMN "jti_hex" TO "jti"; args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0006_auto_20171017_2113', '2024-01-10 20:13:12.509539') RETURNING "django_migrations"."id"; args=('token_blacklist', '0006_auto_20171017_2113', '2024-01-10 20:13:12.509539'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti" varchar(255) NOT NULL UNIQUE, "created_at" datetime NULL); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "expires_at" datetime NOT NULL, "user_id" bigint NOT NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti" varchar(255) NOT NULL UNIQUE, "created_at" datetime NULL); args=None; alias=default
+INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "token", "expires_at", "user_id", "jti", "created_at") SELECT "id", "token", "expires_at", "user_id", "jti", "created_at" FROM "token_blacklist_outstandingtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "token", "expires_at", "user_id", "jti", "created_at") SELECT "id", "token", "expires_at", "user_id", "jti", "created_at" FROM "token_blacklist_outstandingtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_outstandingtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_outstandingtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; args=(); alias=default
+CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); (params ())
+(0.000) CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); args=(); alias=default
+CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "created_at" datetime NULL, "expires_at" datetime NOT NULL, "jti" varchar(255) NOT NULL UNIQUE, "user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "created_at" datetime NULL, "expires_at" datetime NOT NULL, "jti" varchar(255) NOT NULL UNIQUE, "user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "token", "created_at", "expires_at", "jti", "user_id") SELECT "id", "token", "created_at", "expires_at", "jti", "user_id" FROM "token_blacklist_outstandingtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_outstandingtoken" ("id", "token", "created_at", "expires_at", "jti", "user_id") SELECT "id", "token", "created_at", "expires_at", "jti", "user_id" FROM "token_blacklist_outstandingtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_outstandingtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_outstandingtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; (params ())
+(0.015) ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; args=(); alias=default
+CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); (params ())
+(0.000) CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0007_auto_20171017_2214', '2024-01-10 20:13:12.561400') RETURNING "django_migrations"."id"; args=('token_blacklist', '0007_auto_20171017_2214', '2024-01-10 20:13:12.561400'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__token_blacklist_blacklistedtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "blacklisted_at" datetime NOT NULL, "token_id" integer NOT NULL UNIQUE REFERENCES "token_blacklist_outstandingtoken" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_blacklistedtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "blacklisted_at" datetime NOT NULL, "token_id" integer NOT NULL UNIQUE REFERENCES "token_blacklist_outstandingtoken" ("id") DEFERRABLE INITIALLY DEFERRED); args=None; alias=default
+INSERT INTO "new__token_blacklist_blacklistedtoken" ("blacklisted_at", "token_id", "id") SELECT "blacklisted_at", "token_id", "id" FROM "token_blacklist_blacklistedtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_blacklistedtoken" ("blacklisted_at", "token_id", "id") SELECT "blacklisted_at", "token_id", "id" FROM "token_blacklist_blacklistedtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_blacklistedtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_blacklistedtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_blacklistedtoken" RENAME TO "token_blacklist_blacklistedtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_blacklistedtoken" RENAME TO "token_blacklist_blacklistedtoken"; args=(); alias=default
+CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "created_at" datetime NULL, "expires_at" datetime NOT NULL, "user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti" varchar(255) NOT NULL UNIQUE); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_outstandingtoken" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "token" text NOT NULL, "created_at" datetime NULL, "expires_at" datetime NOT NULL, "user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti" varchar(255) NOT NULL UNIQUE); args=None; alias=default
+INSERT INTO "new__token_blacklist_outstandingtoken" ("token", "created_at", "expires_at", "user_id", "jti", "id") SELECT "token", "created_at", "expires_at", "user_id", "jti", "id" FROM "token_blacklist_outstandingtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_outstandingtoken" ("token", "created_at", "expires_at", "user_id", "jti", "id") SELECT "token", "created_at", "expires_at", "user_id", "jti", "id" FROM "token_blacklist_outstandingtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_outstandingtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_outstandingtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; args=(); alias=default
+CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); (params ())
+(0.000) CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0008_migrate_to_bigautofield', '2024-01-10 20:13:12.660102') RETURNING "django_migrations"."id"; args=('token_blacklist', '0008_migrate_to_bigautofield', '2024-01-10 20:13:12.660102'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+CREATE TABLE "new__token_blacklist_blacklistedtoken" ("blacklisted_at" datetime NOT NULL, "token_id" bigint NOT NULL UNIQUE REFERENCES "token_blacklist_outstandingtoken" ("id") DEFERRABLE INITIALLY DEFERRED, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_blacklistedtoken" ("blacklisted_at" datetime NOT NULL, "token_id" bigint NOT NULL UNIQUE REFERENCES "token_blacklist_outstandingtoken" ("id") DEFERRABLE INITIALLY DEFERRED, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); args=None; alias=default
+INSERT INTO "new__token_blacklist_blacklistedtoken" ("blacklisted_at", "token_id", "id") SELECT "blacklisted_at", "token_id", "id" FROM "token_blacklist_blacklistedtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_blacklistedtoken" ("blacklisted_at", "token_id", "id") SELECT "blacklisted_at", "token_id", "id" FROM "token_blacklist_blacklistedtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_blacklistedtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_blacklistedtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_blacklistedtoken" RENAME TO "token_blacklist_blacklistedtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_blacklistedtoken" RENAME TO "token_blacklist_blacklistedtoken"; args=(); alias=default
+CREATE TABLE "new__token_blacklist_outstandingtoken" ("token" text NOT NULL, "created_at" datetime NULL, "expires_at" datetime NOT NULL, "user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti" varchar(255) NOT NULL UNIQUE, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); (params None)
+(0.000) CREATE TABLE "new__token_blacklist_outstandingtoken" ("token" text NOT NULL, "created_at" datetime NULL, "expires_at" datetime NOT NULL, "user_id" bigint NULL REFERENCES "users_user" ("id") DEFERRABLE INITIALLY DEFERRED, "jti" varchar(255) NOT NULL UNIQUE, "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); args=None; alias=default
+INSERT INTO "new__token_blacklist_outstandingtoken" ("token", "created_at", "expires_at", "user_id", "jti", "id") SELECT "token", "created_at", "expires_at", "user_id", "jti", "id" FROM "token_blacklist_outstandingtoken"; (params ())
+(0.000) INSERT INTO "new__token_blacklist_outstandingtoken" ("token", "created_at", "expires_at", "user_id", "jti", "id") SELECT "token", "created_at", "expires_at", "user_id", "jti", "id" FROM "token_blacklist_outstandingtoken"; args=(); alias=default
+DROP TABLE "token_blacklist_outstandingtoken"; (params ())
+(0.000) DROP TABLE "token_blacklist_outstandingtoken"; args=(); alias=default
+ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; (params ())
+(0.000) ALTER TABLE "new__token_blacklist_outstandingtoken" RENAME TO "token_blacklist_outstandingtoken"; args=(); alias=default
+CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); (params ())
+(0.000) CREATE INDEX "token_blacklist_outstandingtoken_user_id_83bc629a" ON "token_blacklist_outstandingtoken" ("user_id"); args=(); alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0010_fix_migrate_to_bigautofield', '2024-01-10 20:13:12.698000') RETURNING "django_migrations"."id"; args=('token_blacklist', '0010_fix_migrate_to_bigautofield', '2024-01-10 20:13:12.698000'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.016) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0011_linearizes_history', '2024-01-10 20:13:12.703986') RETURNING "django_migrations"."id"; args=('token_blacklist', '0011_linearizes_history', '2024-01-10 20:13:12.703986'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) PRAGMA foreign_keys = OFF; args=None; alias=default
+(0.000) PRAGMA foreign_keys; args=None; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('token_blacklist', '0012_alter_outstandingtoken_user', '2024-01-10 20:13:12.728174') RETURNING "django_migrations"."id"; args=('token_blacklist', '0012_alter_outstandingtoken_user', '2024-01-10 20:13:12.728174'); alias=default
+(0.000) PRAGMA foreign_key_check; args=None; alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) PRAGMA foreign_keys = ON; args=None; alias=default
+(0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('admin', 'logentry') RETURNING "django_content_type"."id"; args=('admin', 'logentry'); alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add log entry', 1, 'add_logentry'), ('Can change log entry', 1, 'change_logentry'), ('Can delete log entry', 1, 'delete_logentry'), ('Can view log entry', 1, 'view_logentry') RETURNING "auth_permission"."id"; args=('Can add log entry', 1, 'add_logentry', 'Can change log entry', 1, 'change_logentry', 'Can delete log entry', 1, 'delete_logentry', 'Can view log entry', 1, 'view_logentry'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('auth', 'permission'), ('auth', 'group') RETURNING "django_content_type"."id"; args=('auth', 'permission', 'auth', 'group'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(2, 3); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add permission', 2, 'add_permission'), ('Can change permission', 2, 'change_permission'), ('Can delete permission', 2, 'delete_permission'), ('Can view permission', 2, 'view_permission'), ('Can add group', 3, 'add_group'), ('Can change group', 3, 'change_group'), ('Can delete group', 3, 'delete_group'), ('Can view group', 3, 'view_group') RETURNING "auth_permission"."id"; args=('Can add permission', 2, 'add_permission', 'Can change permission', 2, 'change_permission', 'Can delete permission', 2, 'delete_permission', 'Can view permission', 2, 'view_permission', 'Can add group', 3, 'add_group', 'Can change group', 3, 'change_group', 'Can delete group', 3, 'delete_group', 'Can view group', 3, 'view_group'); alias=default
+(0.016) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('contenttypes', 'contenttype') RETURNING "django_content_type"."id"; args=('contenttypes', 'contenttype'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add content type', 4, 'add_contenttype'), ('Can change content type', 4, 'change_contenttype'), ('Can delete content type', 4, 'delete_contenttype'), ('Can view content type', 4, 'view_contenttype') RETURNING "auth_permission"."id"; args=('Can add content type', 4, 'add_contenttype', 'Can change content type', 4, 'change_contenttype', 'Can delete content type', 4, 'delete_contenttype', 'Can view content type', 4, 'view_contenttype'); alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('sessions', 'session') RETURNING "django_content_type"."id"; args=('sessions', 'session'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add session', 5, 'add_session'), ('Can change session', 5, 'change_session'), ('Can delete session', 5, 'delete_session'), ('Can view session', 5, 'view_session') RETURNING "auth_permission"."id"; args=('Can add session', 5, 'add_session', 'Can change session', 5, 'change_session', 'Can delete session', 5, 'delete_session', 'Can view session', 5, 'view_session'); alias=default
+(0.016) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'rest_framework_simplejwt'; args=('rest_framework_simplejwt',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'rest_framework_simplejwt'; args=('rest_framework_simplejwt',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'token_blacklist'; args=('token_blacklist',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('token_blacklist', 'blacklistedtoken'), ('token_blacklist', 'outstandingtoken') RETURNING "django_content_type"."id"; args=('token_blacklist', 'blacklistedtoken', 'token_blacklist', 'outstandingtoken'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'token_blacklist' AND "django_content_type"."model" = 'blacklistedtoken') LIMIT 21; args=('token_blacklist', 'blacklistedtoken'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'token_blacklist' AND "django_content_type"."model" = 'outstandingtoken') LIMIT 21; args=('token_blacklist', 'outstandingtoken'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6, 7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6, 7); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add blacklisted token', 6, 'add_blacklistedtoken'), ('Can change blacklisted token', 6, 'change_blacklistedtoken'), ('Can delete blacklisted token', 6, 'delete_blacklistedtoken'), ('Can view blacklisted token', 6, 'view_blacklistedtoken'), ('Can add outstanding token', 7, 'add_outstandingtoken'), ('Can change outstanding token', 7, 'change_outstandingtoken'), ('Can delete outstanding token', 7, 'delete_outstandingtoken'), ('Can view outstanding token', 7, 'view_outstandingtoken') RETURNING "auth_permission"."id"; args=('Can add blacklisted token', 6, 'add_blacklistedtoken', 'Can change blacklisted token', 6, 'change_blacklistedtoken', 'Can delete blacklisted token', 6, 'delete_blacklistedtoken', 'Can view blacklisted token', 6, 'view_blacklistedtoken', 'Can add outstanding token', 7, 'add_outstandingtoken', 'Can change outstanding token', 7, 'change_outstandingtoken', 'Can delete outstanding token', 7, 'delete_outstandingtoken', 'Can view outstanding token', 7, 'view_outstandingtoken'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'token_blacklist'; args=('token_blacklist',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'taggit'; args=('taggit',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('taggit', 'tag'), ('taggit', 'taggeditem') RETURNING "django_content_type"."id"; args=('taggit', 'tag', 'taggit', 'taggeditem'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'taggit' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('taggit', 'tag'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'taggit' AND "django_content_type"."model" = 'taggeditem') LIMIT 21; args=('taggit', 'taggeditem'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.015) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add tag', 8, 'add_tag'), ('Can change tag', 8, 'change_tag'), ('Can delete tag', 8, 'delete_tag'), ('Can view tag', 8, 'view_tag'), ('Can add tagged item', 9, 'add_taggeditem'), ('Can change tagged item', 9, 'change_taggeditem'), ('Can delete tagged item', 9, 'delete_taggeditem'), ('Can view tagged item', 9, 'view_taggeditem') RETURNING "auth_permission"."id"; args=('Can add tag', 8, 'add_tag', 'Can change tag', 8, 'change_tag', 'Can delete tag', 8, 'delete_tag', 'Can view tag', 8, 'view_tag', 'Can add tagged item', 9, 'add_taggeditem', 'Can change tagged item', 9, 'change_taggeditem', 'Can delete tagged item', 9, 'delete_taggeditem', 'Can view tagged item', 9, 'view_taggeditem'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'taggit'; args=('taggit',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'post'; args=('post',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('post', 'comment'), ('post', 'follow'), ('post', 'interest'), ('post', 'notification'), ('post', 'post') RETURNING "django_content_type"."id"; args=('post', 'comment', 'post', 'follow', 'post', 'interest', 'post', 'notification', 'post', 'post'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'post' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('post', 'comment'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'post' AND "django_content_type"."model" = 'follow') LIMIT 21; args=('post', 'follow'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'post' AND "django_content_type"."model" = 'interest') LIMIT 21; args=('post', 'interest'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'post' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('post', 'notification'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'post' AND "django_content_type"."model" = 'post') LIMIT 21; args=('post', 'post'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10, 11, 12, 13, 14) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10, 11, 12, 13, 14); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add comment', 10, 'add_comment'), ('Can change comment', 10, 'change_comment'), ('Can delete comment', 10, 'delete_comment'), ('Can view comment', 10, 'view_comment'), ('Can add follow', 11, 'add_follow'), ('Can change follow', 11, 'change_follow'), ('Can delete follow', 11, 'delete_follow'), ('Can view follow', 11, 'view_follow'), ('Can add interest', 12, 'add_interest'), ('Can change interest', 12, 'change_interest'), ('Can delete interest', 12, 'delete_interest'), ('Can view interest', 12, 'view_interest'), ('Can add notification', 13, 'add_notification'), ('Can change notification', 13, 'change_notification'), ('Can delete notification', 13, 'delete_notification'), ('Can view notification', 13, 'view_notification'), ('Can add post', 14, 'add_post'), ('Can change post', 14, 'change_post'), ('Can delete post', 14, 'delete_post'), ('Can view post', 14, 'view_post') RETURNING "auth_permission"."id"; args=('Can add comment', 10, 'add_comment', 'Can change comment', 10, 'change_comment', 'Can delete comment', 10, 'delete_comment', 'Can view comment', 10, 'view_comment', 'Can add follow', 11, 'add_follow', 'Can change follow', 11, 'change_follow', 'Can delete follow', 11, 'delete_follow', 'Can view follow', 11, 'view_follow', 'Can add interest', 12, 'add_interest', 'Can change interest', 12, 'change_interest', 'Can delete interest', 12, 'delete_interest', 'Can view interest', 12, 'view_interest', 'Can add notification', 13, 'add_notification', 'Can change notification', 13, 'change_notification', 'Can delete notification', 13, 'delete_notification', 'Can view notification', 13, 'view_notification', 'Can add post', 14, 'add_post', 'Can change post', 14, 'change_post', 'Can delete post', 14, 'delete_post', 'Can view post', 14, 'view_post'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'post'; args=('post',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'; args=('users',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('users', 'user') RETURNING "django_content_type"."id"; args=('users', 'user'); alias=default
+(0.015) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'users' AND "django_content_type"."model" = 'user') LIMIT 21; args=('users', 'user'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (15) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(15,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add user', 15, 'add_user'), ('Can change user', 15, 'change_user'), ('Can delete user', 15, 'delete_user'), ('Can view user', 15, 'view_user') RETURNING "auth_permission"."id"; args=('Can add user', 15, 'add_user', 'Can change user', 15, 'change_user', 'Can delete user', 15, 'delete_user', 'Can view user', 15, 'view_user'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'; args=('users',); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'chat'; args=('chat',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('chat', 'chatroom'), ('chat', 'message') RETURNING "django_content_type"."id"; args=('chat', 'chatroom', 'chat', 'message'); alias=default
+(0.016) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'chat' AND "django_content_type"."model" = 'chatroom') LIMIT 21; args=('chat', 'chatroom'); alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'chat' AND "django_content_type"."model" = 'message') LIMIT 21; args=('chat', 'message'); alias=default
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (16, 17) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(16, 17); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add chat room', 16, 'add_chatroom'), ('Can change chat room', 16, 'change_chatroom'), ('Can delete chat room', 16, 'delete_chatroom'), ('Can view chat room', 16, 'view_chatroom'), ('Can add message', 17, 'add_message'), ('Can change message', 17, 'change_message'), ('Can delete message', 17, 'delete_message'), ('Can view message', 17, 'view_message') RETURNING "auth_permission"."id"; args=('Can add chat room', 16, 'add_chatroom', 'Can change chat room', 16, 'change_chatroom', 'Can delete chat room', 16, 'delete_chatroom', 'Can view chat room', 16, 'view_chatroom', 'Can add message', 17, 'add_message', 'Can change message', 17, 'change_message', 'Can delete message', 17, 'delete_message', 'Can view message', 17, 'view_message'); alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'chat'; args=('chat',); alias=default
