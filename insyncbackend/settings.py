@@ -101,12 +101,12 @@ ASGI_APPLICATION = 'insyncbackend.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('ENGINE'),
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD': config('PASSWORD'),
-        'HOST': config('HOST'),
-        'PORT': config('PORT'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'insyncDB',
+        'USER': 'insyncuser',
+        'PASSWORD': 'insync@123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -146,7 +146,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build', 'static')
