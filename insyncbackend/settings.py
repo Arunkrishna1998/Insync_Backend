@@ -40,6 +40,8 @@ CORS_ORIGIN_WHITELIST = [
     "https://www.arunkrishna.online",
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://*.arunkrishna.online',]
+
 SITE_ID=1
 # Application definition
 
