@@ -222,13 +222,20 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
+LOGS_DIR = os.path.join(BASE_DIR, 'django_logs')  
+
+if not os.path.exists(LOGS_DIR):
+    os.makedirs(LOGS_DIR)  
+
+
+
 LOGGING = {
     'version': 1,
     'handlers': {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'django_logs', 'debug.log'),
+            'filename': os.path.join(LOGS_DIR, 'debug.log'),  # Log file path
         },
     },
     'loggers': {
