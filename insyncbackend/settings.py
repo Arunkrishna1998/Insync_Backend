@@ -102,7 +102,7 @@ ASGI_APPLICATION = 'insyncbackend.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'insyncDB',
+        'NAME': 'insyncdb',
         'USER': 'insyncuser',
         'PASSWORD': 'insync@123',
         'HOST': 'localhost',
