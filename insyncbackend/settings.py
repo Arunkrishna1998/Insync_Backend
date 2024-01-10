@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 CORS_ALLOWING_CREDENTIALS = True  
 CORS_ORIGIN_WHITELIST = [
     "https://main.d2w5o4nwbgj2f2.amplifyapp.com",
+    "https://www.arunkrishna.online",
 ]
 
 SITE_ID=1
