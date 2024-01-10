@@ -92,13 +92,23 @@ ASGI_APPLICATION = 'insyncbackend.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': config('ENGINE'),
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': config('PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -137,6 +147,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build', 'static')
 ]
@@ -192,9 +203,9 @@ AUTH_USER_MODEL = 'users.User'
 
 # SMTP Configuration
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'kitesarun@gmail.com'
-EMAIL_HOST_PASSWORD = 'loopudztfqjdbbwd'
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
