@@ -33,6 +33,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWING_CREDENTIALS = True  
+CORS_ORIGIN_WHITELIST = [
+    "https://arunkrishna.online",
+    "https://www.arunkrishna.online",
+]
+
 SITE_ID=1
 # Application definition
 
@@ -57,9 +64,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -197,7 +204,7 @@ SIMPLE_JWT = {
     "TOKEN_OBTAIN_SERIALIZER": "users.serializers.MyTokenObtainPairSerializer",
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+
 
 AUTH_USER_MODEL = 'users.User'
 
