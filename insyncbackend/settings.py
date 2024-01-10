@@ -36,8 +36,7 @@ ALLOWED_HOSTS = ['*']
 # CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWING_CREDENTIALS = True  
 CORS_ORIGIN_WHITELIST = [
-    "https://arunkrishna.online",
-    "https://www.arunkrishna.online",
+    "https://main.d2w5o4nwbgj2f2.amplifyapp.com",
 ]
 
 SITE_ID=1
